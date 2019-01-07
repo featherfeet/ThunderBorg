@@ -10,6 +10,8 @@
 #include <stdint.h>
 #include "i2c.h"
 
+// #define I2C_DEBUG
+
 I2C::I2C(int adaptor) {
 	// Open the I2C port.
 	char filename[20];
@@ -30,11 +32,13 @@ void I2C::change_address(int address) {
 
 void I2C::read_bytes(uint8_t *data, int len) {
 	int result = read(file, data, len);
-	printf("I2C Read: {"); // TODO: Remove this (DBG).
-	for (int i = 0; i < len; i++) {
-		printf("%#08x, ", data[i]);
-	}
-	printf("\b\b}\n");
+	#ifdef I2C_DEBUG
+		printf("I2C Read: {");
+		for (int i = 0; i < len; i++) {
+			printf("%#08x, ", data[i]);
+		}
+		printf("\b\b}\n");
+	#endif
 	if (result < 0) {
 		printf("Error while reading bytes from I2C:\n");
 		printf("%s\n", strerror(errno));
@@ -43,11 +47,13 @@ void I2C::read_bytes(uint8_t *data, int len) {
 
 void I2C::write_bytes(uint8_t *data, int len) {
 	int result = write(file, data, len);
-	printf("I2C Write: {"); // TODO: Remove this (DBG).
-	for (int i = 0; i < len; i++) {
-		printf("%#08x, ", data[i]);
-	}
-	printf("\b\b}\n");
+	#ifdef I2C_DEBUG
+		printf("I2C Write: {");
+		for (int i = 0; i < len; i++) {
+			printf("%#08x, ", data[i]);
+		}
+		printf("\b\b}\n");
+	#endif
 	if (result < 0) {
 		printf("Error while writing bytes to I2C:\n");
 		printf("%s\n", strerror(errno));
@@ -55,5 +61,6 @@ void I2C::write_bytes(uint8_t *data, int len) {
 }
 
 I2C::~I2C() {
+	printf("Closing I2C.\n");
 	close(file);
 }

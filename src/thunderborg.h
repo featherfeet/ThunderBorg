@@ -50,22 +50,22 @@ extern uint8_t COMMAND_VALUE_OFF;     // I2C value representing off
 
 extern int COMMAND_ANALOG_MAX; // Maximum value for analog readings
 
-void Init(I2C i2c);
+void Init(I2C *i2c);
 
-void SetLedShowBattery(I2C i2c, bool state);
+void SetLedShowBattery(I2C *i2c, bool state);
 
-void SetLed1(I2C i2c, float r, float g, float b);
+void SetLed1(I2C *i2c, float r, float g, float b);
 
-void SetNewAddress(I2C i2c, uint8_t newAddress);
+void SetNewAddress(I2C *i2c, uint8_t newAddress);
 
-void SetMotor2(I2C i2c, float power);
+void SetMotor2(I2C *i2c, float power);
 
-float GetMotor2(I2C i2c);
+float GetMotor2(I2C *i2c);
 
-void SetMotor1(I2C i2c, float power);
+void SetMotor1(I2C *i2c, float power);
 
-float GetMotor1(I2C i2c);
+float GetMotor1(I2C *i2c);
 
-float GetBatteryReading(I2C i2c);
+float GetBatteryReading(I2C *i2c);
 
 #endif

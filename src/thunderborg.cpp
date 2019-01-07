@@ -49,25 +49,25 @@ uint8_t COMMAND_VALUE_OFF           = 0;     // I2C value representing off
 
 int COMMAND_ANALOG_MAX          = 0x3FF; // Maximum value for analog readings
 
-void Init(I2C i2c) {
-	i2c.write_bytes(&COMMAND_GET_ID, 1);
+void Init(I2C *i2c) {
+	i2c->write_bytes(&COMMAND_GET_ID, 1);
 	uint8_t readbuf[I2C_MAX_LEN];
-	i2c.read_bytes(readbuf, I2C_MAX_LEN);
+	i2c->read_bytes(readbuf, I2C_MAX_LEN);
 	printf("Found I2C device with ID: %#08x\n", readbuf[1]);
 }
 
-void SetLedShowBattery(I2C i2c, bool state) {
+void SetLedShowBattery(I2C *i2c, bool state) {
 	if (state == true) {
 		uint8_t buf[2] = {COMMAND_SET_LED_BATT_MON, COMMAND_VALUE_ON};
-		i2c.write_bytes(buf, 2);
+		i2c->write_bytes(buf, 2);
 	}
 	else {
 		uint8_t buf[2] = {COMMAND_SET_LED_BATT_MON, COMMAND_VALUE_OFF};
-		i2c.write_bytes(buf, 2);
+		i2c->write_bytes(buf, 2);
 	}
 }
 
-void SetLed1(I2C i2c, float r, float g, float b) {
+void SetLed1(I2C *i2c, float r, float g, float b) {
 	r *= PWM_MAX;
 	g *= PWM_MAX;
 	b *= PWM_MAX;
@@ -75,20 +75,20 @@ void SetLed1(I2C i2c, float r, float g, float b) {
 	uint8_t g_int = (uint8_t) g;
 	uint8_t b_int = (uint8_t) b;
 	uint8_t buf[] = {COMMAND_SET_LED1, r_int, g_int, b_int};
-	i2c.write_bytes(buf, sizeof(buf) / sizeof(uint8_t));
+	i2c->write_bytes(buf, sizeof(buf) / sizeof(uint8_t));
 }
 
-void SetNewAddress(I2C i2c, uint8_t newAddress) {
+void SetNewAddress(I2C *i2c, uint8_t newAddress) {
 	if (newAddress < 0x03 || newAddress > 0x77) {
 		printf("Error, I2C addresses below 0x03 and above 0x77 are reserved.");
 	}
 	uint8_t buf[2] = {COMMAND_SET_I2C_ADD, newAddress};
-	i2c.write_bytes(buf, sizeof(buf) / sizeof(uint8_t));
-	i2c.change_address(newAddress);
+	i2c->write_bytes(buf, sizeof(buf) / sizeof(uint8_t));
+	i2c->change_address(newAddress);
 	Init(i2c);
 }
 
-void SetMotor2(I2C i2c, float power) {
+void SetMotor2(I2C *i2c, float power) {
 	uint8_t command, pwm;
 	if (power < 0.0) {
 		command = COMMAND_SET_B_REV;
@@ -105,7 +105,7 @@ void SetMotor2(I2C i2c, float power) {
 		}
 	}
 	uint8_t buf[] = {command, pwm};
-	i2c.write_bytes(buf, sizeof(buf) / sizeof(uint8_t));
+	i2c->write_bytes(buf, sizeof(buf) / sizeof(uint8_t));
 	/*
 	if (round(GetMotor2(i2c) * PWM_MAX) != pwm) {
 		printf("Error: SetMotor2 could not set the motor power.\n");
@@ -113,10 +113,10 @@ void SetMotor2(I2C i2c, float power) {
 	*/
 }
 
-float GetMotor2(I2C i2c) {
-	i2c.write_bytes(&COMMAND_GET_B, 1);
+float GetMotor2(I2C *i2c) {
+	i2c->write_bytes(&COMMAND_GET_B, 1);
 	uint8_t buf[I2C_MAX_LEN];
-	i2c.read_bytes(buf, I2C_MAX_LEN);
+	i2c->read_bytes(buf, I2C_MAX_LEN);
 	float power = ((float) buf[2]) / ((float) PWM_MAX);
 	if (buf[1] == COMMAND_VALUE_FWD) {
 		return power;
@@ -130,7 +130,7 @@ float GetMotor2(I2C i2c) {
 	}
 }
 
-void SetMotor1(I2C i2c, float power) {
+void SetMotor1(I2C *i2c, float power) {
 	uint8_t command, pwm;
 	if (power < 0.0) {
 		command = COMMAND_SET_A_REV;
@@ -147,7 +147,7 @@ void SetMotor1(I2C i2c, float power) {
 		}
 	}
 	uint8_t buf[] = {command, pwm};
-	i2c.write_bytes(buf, sizeof(buf) / sizeof(uint8_t));
+	i2c->write_bytes(buf, sizeof(buf) / sizeof(uint8_t));
 	/*
 	if (round(GetMotor1(i2c) * PWM_MAX) != pwm) {
 		printf("Error: SetMotor1 could not set the motor power.\n");
@@ -155,10 +155,10 @@ void SetMotor1(I2C i2c, float power) {
 	*/
 }
 
-float GetMotor1(I2C i2c) {
-	i2c.write_bytes(&COMMAND_GET_A, 1);
+float GetMotor1(I2C *i2c) {
+	i2c->write_bytes(&COMMAND_GET_A, 1);
 	uint8_t buf[I2C_MAX_LEN];
-	i2c.read_bytes(buf, I2C_MAX_LEN);
+	i2c->read_bytes(buf, I2C_MAX_LEN);
 	float power = ((float) buf[2]) / ((float) PWM_MAX);
 	if (buf[1] == COMMAND_VALUE_FWD) {
 		return power;
@@ -172,10 +172,10 @@ float GetMotor1(I2C i2c) {
 	}
 }
 
-float GetBatteryReading(I2C i2c) {
-	i2c.write_bytes(&COMMAND_GET_BATT_VOLT, 1);
+float GetBatteryReading(I2C *i2c) {
+	i2c->write_bytes(&COMMAND_GET_BATT_VOLT, 1);
 	uint8_t buf[I2C_MAX_LEN];
-	i2c.read_bytes(buf, I2C_MAX_LEN);
+	i2c->read_bytes(buf, I2C_MAX_LEN);
 	int raw = (buf[1] << 8) + buf[2];
 	float level = ((float) raw) / ((float) COMMAND_ANALOG_MAX);
 	level *= VOLTAGE_PIN_MAX;

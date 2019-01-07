@@ -1,1 +1,1 @@
-/usr/bin/c++    -rdynamic CMakeFiles/main.dir/src/main.cpp.o CMakeFiles/main.dir/src/i2c.cpp.o CMakeFiles/main.dir/src/thunderborg.cpp.o  -o main 
+/usr/bin/c++      CMakeFiles/main.dir/src/main.cpp.o CMakeFiles/main.dir/src/i2c.cpp.o CMakeFiles/main.dir/src/thunderborg.cpp.o  -o main -rdynamic 

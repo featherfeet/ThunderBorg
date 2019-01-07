@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/odroid/Projects/ThunderBorg/src/i2c.cpp
+/home/pi/thunderborg/ThunderBorg CPP/src/i2c.cpp
 cstdio
 -
 cstring
@@ -28,35 +28,37 @@ linux/types.h
 stdint.h
 -
 i2c.h
-/home/odroid/Projects/ThunderBorg/src/i2c.h
+/home/pi/thunderborg/ThunderBorg CPP/src/i2c.h
 
-/home/odroid/Projects/ThunderBorg/src/i2c.h
+/home/pi/thunderborg/ThunderBorg CPP/src/i2c.h
 linux/types.h
 -
 stdint.h
 -
 
-/home/odroid/Projects/ThunderBorg/src/main.cpp
+/home/pi/thunderborg/ThunderBorg CPP/src/main.cpp
 iostream
 -
+chrono
+-
 i2c.h
-/home/odroid/Projects/ThunderBorg/src/i2c.h
+/home/pi/thunderborg/ThunderBorg CPP/src/i2c.h
 thunderborg.h
-/home/odroid/Projects/ThunderBorg/src/thunderborg.h
+/home/pi/thunderborg/ThunderBorg CPP/src/thunderborg.h
 
-/home/odroid/Projects/ThunderBorg/src/thunderborg.cpp
+/home/pi/thunderborg/ThunderBorg CPP/src/thunderborg.cpp
 cstdio
 -
 cmath
 -
 i2c.h
-/home/odroid/Projects/ThunderBorg/src/i2c.h
+/home/pi/thunderborg/ThunderBorg CPP/src/i2c.h
 thunderborg.h
-/home/odroid/Projects/ThunderBorg/src/thunderborg.h
+/home/pi/thunderborg/ThunderBorg CPP/src/thunderborg.h
 
-/home/odroid/Projects/ThunderBorg/src/thunderborg.h
+/home/pi/thunderborg/ThunderBorg CPP/src/thunderborg.h
 cstdint
 -
 i2c.h
-/home/odroid/Projects/ThunderBorg/src/i2c.h
+/home/pi/thunderborg/ThunderBorg CPP/src/i2c.h
 

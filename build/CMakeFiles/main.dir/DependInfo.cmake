@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/odroid/Projects/ThunderBorg/src/i2c.cpp" "/home/odroid/Projects/ThunderBorg/build/CMakeFiles/main.dir/src/i2c.cpp.o"
-  "/home/odroid/Projects/ThunderBorg/src/main.cpp" "/home/odroid/Projects/ThunderBorg/build/CMakeFiles/main.dir/src/main.cpp.o"
-  "/home/odroid/Projects/ThunderBorg/src/thunderborg.cpp" "/home/odroid/Projects/ThunderBorg/build/CMakeFiles/main.dir/src/thunderborg.cpp.o"
+  "/home/pi/thunderborg/ThunderBorg CPP/src/i2c.cpp" "/home/pi/thunderborg/ThunderBorg CPP/build/CMakeFiles/main.dir/src/i2c.cpp.o"
+  "/home/pi/thunderborg/ThunderBorg CPP/src/main.cpp" "/home/pi/thunderborg/ThunderBorg CPP/build/CMakeFiles/main.dir/src/main.cpp.o"
+  "/home/pi/thunderborg/ThunderBorg CPP/src/thunderborg.cpp" "/home/pi/thunderborg/ThunderBorg CPP/build/CMakeFiles/main.dir/src/thunderborg.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
