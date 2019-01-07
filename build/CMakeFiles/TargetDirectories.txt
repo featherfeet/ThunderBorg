@@ -1,0 +1,3 @@
+/home/odroid/Projects/ThunderBorg/build/CMakeFiles/rebuild_cache.dir
+/home/odroid/Projects/ThunderBorg/build/CMakeFiles/main.dir
+/home/odroid/Projects/ThunderBorg/build/CMakeFiles/edit_cache.dir
